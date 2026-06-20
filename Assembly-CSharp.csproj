@@ -49,6 +49,7 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Scripts/UI/StatsUI.cs" />
     <Compile Include="Assets/Scripts/Spawn/Spawner.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
   </ItemGroup>
