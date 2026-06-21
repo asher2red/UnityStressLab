@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -8,9 +8,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private PoolableCube poolablePrefab;
     [SerializeField] private float spawnRate = 100f;
+    [SerializeField] private float lifeTime = 3f;
 
     private ObjectPool<PoolableCube> pool;
     public int Count => objects.Count;
+    public float LifeTime => lifeTime;
     private readonly List<GameObject> objects = new();
     private bool autoSpawn;
 
@@ -34,6 +36,8 @@ public class Spawner : MonoBehaviour
 
                     objects.Add(obj);
 
+                    StartCoroutine(DespawnRoutine(obj));
+
                     break;
                 }
 
@@ -44,9 +48,12 @@ public class Spawner : MonoBehaviour
 
                     objects.Add(obj.gameObject);
 
+                    StartCoroutine(DespawnRoutine(obj.gameObject));
+
                     break;
                 }
         }
+
     }
 
     public void SpawnMany(int count)
@@ -59,6 +66,8 @@ public class Spawner : MonoBehaviour
 
     public void Clear()
     {
+        StopAllCoroutines();
+        
         foreach (var obj in objects)
         {
             if (obj == null)
@@ -75,6 +84,40 @@ public class Spawner : MonoBehaviour
         }
 
         objects.Clear();
+    }
+
+    private IEnumerator DespawnRoutine(GameObject obj)
+    {
+        yield return new WaitForSeconds(lifeTime);
+
+        if (obj == null)
+            yield break;
+
+        if (mode == SpawnMode.Destroy)
+        {
+            objects.Remove(obj);
+
+            Destroy(obj);
+        }
+        else
+        {
+            objects.Remove(obj);
+
+            pool.Release(obj.GetComponent<PoolableCube>());
+        }
+    }
+
+    private void Update()
+    {
+        if (!autoSpawn)
+        return;
+
+        float count = spawnRate * Time.deltaTime;
+
+        for (int i = 0; i < count; i++)
+        {
+            Spawn();
+        }
     }
 
     public void setAutoSpawn(bool value)
@@ -94,21 +137,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (!autoSpawn)
-        return;
-
-        float count = spawnRate * Time.deltaTime;
-
-        for (int i = 0; i < count; i++)
-        {
-            Spawn();
-        }
-    }
-
     public void SetSpawnRate(float value)
     {
         spawnRate = value;
+    }
+
+    public void SetLifeTime(float value)
+    {
+        lifeTime = value;
     }
 }

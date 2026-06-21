@@ -5,6 +5,7 @@ public class StatsUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fpsText;
     [SerializeField] private TextMeshProUGUI countText;
+    [SerializeField] private TextMeshProUGUI lifeTimeText;
     [SerializeField] private Spawner spawner;
 
     private float timer;
@@ -22,5 +23,6 @@ public class StatsUI : MonoBehaviour
 
         fpsText.text = $"FPS: {fps:F0}";
         countText.text = $"Objects: {spawner.Count}";
+        lifeTimeText.text = $"LifeTime: {spawner.LifeTime:F1}";
     }
 }
