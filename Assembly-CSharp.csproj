@@ -50,8 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/UI/StatsUI.cs" />
+    <Compile Include="Assets/Scripts/Pooling/IPoolable.cs" />
+    <Compile Include="Assets/Scripts/Pooling/ObjectPool.cs" />
     <Compile Include="Assets/Scripts/Spawn/Spawner.cs" />
+    <Compile Include="Assets/Scripts/Pooling/PoolableCube.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
+    <Compile Include="Assets/Scripts/Spawn/SpawnMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
