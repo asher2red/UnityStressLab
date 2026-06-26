@@ -196,19 +196,11 @@ Object Pool은 평균 FPS 향상보다 다음 항목에서 효과가 더 크게 
 
 ## 스크린샷
 
-`Docs` 폴더에 아래 이미지를 추가합니다.
-
-- `gameplay.png`
-- `destroy_profiler.png`
-- `pool_profiler.png`
-
-```markdown
 ![Gameplay](Docs/gameplay.png)
 
 ![Destroy Profiler](Docs/destroy_profiler.png)
 
 ![Pool Profiler](Docs/pool_profiler.png)
-```
 
 ---
 
@@ -218,7 +210,7 @@ Object Pool은 평균 FPS 향상보다 다음 항목에서 효과가 더 크게 
 git clone https://github.com/asher2red/UnityStressLab.git
 ```
 
-Unity Hub에서 프로젝트를 열고 `Main` 씬을 실행합니다.
+Unity Hub에서 프로젝트를 열고 `StressTestScene` 씬을 실행합니다.
 
 ---
 
